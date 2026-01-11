@@ -213,8 +213,6 @@
         const RatingView = ({ activeText, styles, themeColor, onSubmit }) => {
             return (
                 <div className="flex flex-col items-center justify-center w-full h-full animate-fade-in">
-                    <h3 className={`text-sm font-semibold mb-4 ${styles.text}`}>{activeText.ratingTitle}</h3>
-                    
                     <div className="flex gap-6">
                         <button
                             onClick={() => onSubmit('like')}
