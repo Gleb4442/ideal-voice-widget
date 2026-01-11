@@ -463,6 +463,12 @@
             const handleRatingSubmit = () => {
                 setCallState('idle');
                 setMessages([]);
+                setIsOpen(false); // Close the widget after rating
+                
+                // If the user was in center mode, switch back to standard side position (right)
+                if (config.position === 'center') {
+                    setConfig(prev => ({ ...prev, position: 'right' }));
+                }
             };
 
             const handleDismissCenter = () => {
