@@ -208,35 +208,6 @@
             { id: 'teal', name: 'Teal', primary: 'from-teal-400 to-teal-600', glow: 'bg-teal-400', text: 'text-teal-600', accent: 'bg-teal-400', ring: 'ring-teal-400', rgb: '45, 212, 191' },
         ];
 
-        // --- RATING VIEW COMPONENT ---
-        const RatingView = ({ activeText, styles, themeColor, onSubmit }) => {
-            return (
-                <div className="flex flex-col items-center justify-center w-full h-full animate-fade-in">
-                    <h3 className={`text-sm font-semibold mb-4 ${styles.text}`}>{activeText.ratingTitle}</h3>
-                    
-                    <div className="flex gap-6">
-                        <button
-                            onClick={() => onSubmit('like')}
-                            className={`flex flex-col items-center gap-1 group transition-transform active:scale-90`}
-                        >
-                            <div className={`p-3 rounded-full ${styles.inputBg} group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors ${styles.subtext}`}>
-                                <IconWrapper name="ThumbsUp" size={24} />
-                            </div>
-                        </button>
-
-                        <button
-                            onClick={() => onSubmit('dislike')}
-                            className={`flex flex-col items-center gap-1 group transition-transform active:scale-90`}
-                        >
-                            <div className={`p-3 rounded-full ${styles.inputBg} group-hover:bg-red-100 group-hover:text-red-600 transition-colors ${styles.subtext}`}>
-                                <IconWrapper name="ThumbsDown" size={24} />
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            );
-        };
-
         const AdminPanel = ({ config, setConfig, isOpen, setIsOpen }) => {
             const fileInputRef = useRef(null);
 
