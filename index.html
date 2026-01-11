@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Добавлен maximum-scale=1 для предотвращения зума при фокусе, но основной фикс в размере шрифта input -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Voice Concierge Widget Demo</title>
     
     <!-- Tailwind CSS -->
@@ -159,7 +160,6 @@
                         listening: '', 
                         end: 'Закончить', 
                         title: 'Консьерж',
-                        // Убрал \n, чтобы на ПК было в одну строку, а на мобиле разбивалось по ширине
                         tooltip: 'Привет! Я Феликс :) Чем могу помочь?',
                         ratingTitle: 'Было ли это полезно?',
                         inputPlaceholder: 'Говорите или пишите...',
@@ -506,6 +506,12 @@
             const { containerStyle, flexClass, originClass } = getPositionStyles();
             const isLauncherHidden = activePos === 'center' || (activePos !== 'center' && isOpen);
 
+            // КЛАССЫ ПЕРЕОПРЕДЕЛЕНИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (активный чат сбоку)
+            // Жестко фиксируем позицию и отступы, игнорируя настройки смещения
+            const mobileActiveSideOverrides = (callState === 'active' && activePos !== 'center')
+                ? "max-md:!left-[15px] max-md:!right-[15px] max-md:!bottom-[15px] max-md:!w-auto max-md:!transform-none"
+                : "";
+
             return (
                 <div 
                     className="relative min-h-screen w-full font-sans overflow-hidden"
@@ -518,7 +524,7 @@
                     <AdminPanel config={config} setConfig={setConfig} isOpen={isAdminOpen} setIsOpen={setIsAdminOpen} />
                     
                     <div 
-                        className={`fixed z-40 flex items-end gap-4 widget-transition ${flexClass}`}
+                        className={`fixed z-40 flex items-end gap-4 widget-transition ${flexClass} ${mobileActiveSideOverrides}`}
                         style={containerStyle}
                     >
                         {/* ОКНО ВИДЖЕТА */}
@@ -526,7 +532,7 @@
                             className={`
                                 relative flex 
                                 ${callState === 'active' 
-                                    ? `flex-col items-center justify-center ${activePos === 'center' ? 'w-[90vw] md:w-[590px] h-[355px]' : 'w-[calc(100vw-2rem)] md:w-[320px] h-[450px]'}` 
+                                    ? `flex-col items-center justify-center ${activePos === 'center' ? 'w-[90vw] md:w-[590px] h-[355px]' : 'w-full max-md:h-[50vh] md:w-[320px] md:h-[450px]'}` 
                                     : `flex-row items-center ${activePos === 'center' ? 'w-[calc(100vw-10px)] mx-[5px] md:w-[380px] md:mx-auto rounded-full p-2' : 'w-[280px] rounded-2xl p-2'}`
                                 }
                                 widget-transition ${originClass}
@@ -582,7 +588,7 @@
                                                 onChange={(e) => setInputValue(e.target.value)}
                                                 onKeyDown={(e) => e.key === 'Enter' && handleSendText()}
                                                 placeholder={activeText.inputPlaceholder} 
-                                                className={`bg-transparent w-full h-full pl-4 pr-10 text-sm outline-none placeholder-opacity-50 ${styles.text}`}
+                                                className={`bg-transparent w-full h-full pl-4 pr-10 text-base md:text-sm outline-none placeholder-opacity-50 ${styles.text}`}
                                             />
                                             <div className={`absolute right-1 top-1/2 -translate-y-1/2 transition-all duration-200 ${inputValue.trim().length > 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
                                                 <button 
@@ -716,7 +722,7 @@
                             )}
                         </div>
 
-                        {/* КНОПКА-ЛАУНЧЕР И ТУЛТИП */}
+                        {/* КНОПКА-ЛАУНЧЕР */}
                         <div className={`flex flex-col gap-4 items-center transition-transform duration-300 origin-bottom ${isOpen && activePos !== 'center' ? 'scale-75 md:scale-100' : ''}`}>
                             {/* ВНЕШНЯЯ КНОПКА ТЕЛЕГРАМ (только если не в центре И если чат не открыт) */}
                             {activePos !== 'center' && !isOpen && (
@@ -738,23 +744,7 @@
                                     </>
                                 )}
 
-                                {/* Тултип - показывается только до первого клика */}
-                                {!isOpen && activePos !== 'center' && !tooltipDismissed && (
-                                    <div 
-                                        className={`
-                                            absolute top-0 -translate-y-0 whitespace-pre-wrap py-2 px-4 rounded-xl shadow-lg border border-slate-100 text-sm font-medium animate-fade-in pointer-events-none
-                                            ${styles.tooltipBg}
-                                            ${activePos === 'right' ? 'right-full mr-4 origin-right' : 'left-full ml-4 origin-left'}
-                                            max-w-[150px] md:max-w-none md:whitespace-nowrap
-                                        `}
-                                    >
-                                        {activeText.tooltip}
-                                        {/* Стрелочка тултипа */}
-                                        <div 
-                                            className={`absolute top-3 -translate-y-1/2 border-8 border-transparent ${activePos === 'right' ? 'right-[-8px] border-l-white' : 'left-[-8px] border-r-white'} opacity-100`}
-                                        />
-                                    </div>
-                                )}
+                                {/* ТУЛТИП УДАЛЕН ПОЛНОСТЬЮ */}
                                 
                                 <button
                                     onClick={toggleWidget}
