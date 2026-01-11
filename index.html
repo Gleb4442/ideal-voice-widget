@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Добавлен maximum-scale=1 для предотвращения зума при фокусе, но основной фикс в размере шрифта input -->
+    <!-- Добавлен maximum-scale=1 для предотвращения зума при фокусе -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Voice Concierge Widget Demo</title>
     
@@ -508,8 +508,10 @@
 
             // КЛАССЫ ПЕРЕОПРЕДЕЛЕНИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (активный чат сбоку)
             // Жестко фиксируем позицию и отступы, игнорируя настройки смещения
+            // Добавлено !m-0 для обнуления внешних отступов и строгие !left-[15px] !right-[15px] для симметрии
+            // Высота уменьшена на 15px через calc(50vh - 15px) для side-режима
             const mobileActiveSideOverrides = (callState === 'active' && activePos !== 'center')
-                ? "max-md:!left-[15px] max-md:!right-[15px] max-md:!bottom-[15px] max-md:!w-auto max-md:!transform-none"
+                ? "max-md:!left-[15px] max-md:!right-[15px] max-md:!bottom-[15px] max-md:!w-auto max-md:!transform-none max-md:!m-0"
                 : "";
 
             return (
@@ -532,7 +534,7 @@
                             className={`
                                 relative flex 
                                 ${callState === 'active' 
-                                    ? `flex-col items-center justify-center ${activePos === 'center' ? 'w-[90vw] md:w-[590px] h-[355px]' : 'w-full max-md:h-[50vh] md:w-[320px] md:h-[450px]'}` 
+                                    ? `flex-col items-center justify-center ${activePos === 'center' ? 'w-[90vw] md:w-[590px] h-[355px]' : 'w-full max-md:h-[calc(50vh-15px)] md:w-[320px] md:h-[450px]'}` 
                                     : `flex-row items-center ${activePos === 'center' ? 'w-[calc(100vw-10px)] mx-[5px] md:w-[380px] md:mx-auto rounded-full p-2' : 'w-[280px] rounded-2xl p-2'}`
                                 }
                                 widget-transition ${originClass}
@@ -568,7 +570,7 @@
                                         {messages.map((msg) => (
                                             <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                                 <div className={`
-                                                    max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed shadow-sm
+                                                    max-w-[80%] px-4 py-2 rounded-2xl text-base leading-relaxed shadow-sm
                                                     ${msg.sender === 'user' 
                                                         ? `bg-gradient-to-r ${activeTheme.primary} text-white rounded-tr-none shadow-md`
                                                         : styles.agentBubble + ' border rounded-tl-none ' + styles.border}
@@ -588,7 +590,7 @@
                                                 onChange={(e) => setInputValue(e.target.value)}
                                                 onKeyDown={(e) => e.key === 'Enter' && handleSendText()}
                                                 placeholder={activeText.inputPlaceholder} 
-                                                className={`bg-transparent w-full h-full pl-4 pr-10 text-base md:text-sm outline-none placeholder-opacity-50 ${styles.text}`}
+                                                className={`bg-transparent w-full h-full pl-4 pr-10 text-base outline-none placeholder-opacity-50 ${styles.text}`}
                                             />
                                             <div className={`absolute right-1 top-1/2 -translate-y-1/2 transition-all duration-200 ${inputValue.trim().length > 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
                                                 <button 
