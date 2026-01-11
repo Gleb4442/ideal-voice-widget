@@ -137,13 +137,14 @@
                 text: 'text-slate-900',
                 subtext: 'text-slate-500',
                 border: 'border-white/40',
-                inputBg: 'bg-white/40 shadow-sm',
-                buttonBg: 'bg-white/50 hover:bg-white/60 shadow-sm',
+                // Обновлены стили светлой темы: более заметные тени и кольца акцента
+                inputBg: 'bg-white/80 shadow-[0_2px_8px_rgba(0,0,0,0.08)] ring-1 ring-black/5',
+                buttonBg: 'bg-white/80 hover:bg-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.08)] ring-1 ring-black/5',
                 tooltipBg: 'bg-white/80 backdrop-blur-md text-slate-900', 
                 shadow: 'shadow-2xl shadow-slate-200/50',
                 activeBorderBase: 'ring-2 ring-offset-2 ring-offset-white',
-                agentBubble: 'bg-white/70 text-slate-800 border-white/50 shadow-sm',
-                userBubble: 'bg-slate-800 text-white shadow-md',
+                agentBubble: 'bg-white/90 text-slate-800 border-white/50 shadow-[0_2px_4px_rgba(0,0,0,0.05)] ring-1 ring-black/5',
+                userBubble: 'bg-slate-800 text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)]',
             }
         };
 
@@ -191,22 +192,51 @@
         };
 
         const COLOR_THEMES = [
-            { id: 'gold', name: 'Gold', primary: 'from-amber-400 to-yellow-600', glow: 'bg-amber-400', text: 'text-amber-600', accent: 'bg-amber-400', ring: 'ring-amber-400', rgb: '251, 191, 36' },
-            { id: 'blue', name: 'Blue', primary: 'from-blue-500 to-indigo-600', glow: 'bg-blue-400', text: 'text-blue-600', accent: 'bg-blue-400', ring: 'ring-blue-400', rgb: '96, 165, 250' },
-            { id: 'emerald', name: 'Emerald', primary: 'from-emerald-400 to-teal-600', glow: 'bg-emerald-400', text: 'text-emerald-600', accent: 'bg-emerald-400', ring: 'ring-emerald-400', rgb: '52, 211, 153' },
-            { id: 'purple', name: 'Purple', primary: 'from-purple-500 to-fuchsia-600', glow: 'bg-fuchsia-400', text: 'text-purple-600', accent: 'bg-fuchsia-400', ring: 'ring-fuchsia-400', rgb: '232, 121, 249' },
-            { id: 'red', name: 'Red', primary: 'from-red-500 to-rose-600', glow: 'bg-red-500', text: 'text-red-600', accent: 'bg-red-500', ring: 'ring-red-500', rgb: '239, 68, 68' },
-            { id: 'orange', name: 'Orange', primary: 'from-orange-400 to-orange-600', glow: 'bg-orange-400', text: 'text-orange-600', accent: 'bg-orange-400', ring: 'ring-orange-400', rgb: '251, 146, 60' },
-            { id: 'cyan', name: 'Cyan', primary: 'from-cyan-400 to-cyan-600', glow: 'bg-cyan-400', text: 'text-cyan-600', accent: 'bg-cyan-400', ring: 'ring-cyan-400', rgb: '34, 211, 238' },
-            { id: 'pink', name: 'Pink', primary: 'from-pink-400 to-pink-600', glow: 'bg-pink-400', text: 'text-pink-600', accent: 'bg-pink-400', ring: 'ring-pink-400', rgb: '244, 114, 182' },
-            { id: 'indigo', name: 'Indigo', primary: 'from-indigo-400 to-indigo-600', glow: 'bg-indigo-400', text: 'text-indigo-600', accent: 'bg-indigo-400', ring: 'ring-indigo-400', rgb: '129, 140, 248' },
-            { id: 'slate', name: 'Slate', primary: 'from-slate-400 to-slate-600', glow: 'bg-slate-400', text: 'text-slate-600', accent: 'bg-slate-400', ring: 'ring-slate-400', rgb: '148, 163, 184' },
-            { id: 'lime', name: 'Lime', primary: 'from-lime-400 to-lime-600', glow: 'bg-lime-400', text: 'text-lime-600', accent: 'bg-lime-400', ring: 'ring-lime-400', rgb: '163, 230, 53' },
-            { id: 'rose', name: 'Rose', primary: 'from-rose-400 to-rose-600', glow: 'bg-rose-400', text: 'text-rose-600', accent: 'bg-rose-400', ring: 'ring-rose-400', rgb: '251, 113, 133' },
-            { id: 'sky', name: 'Sky', primary: 'from-sky-400 to-sky-600', glow: 'bg-sky-400', text: 'text-sky-600', accent: 'bg-sky-400', ring: 'ring-sky-400', rgb: '56, 189, 248' },
-            { id: 'violet', name: 'Violet', primary: 'from-violet-400 to-violet-600', glow: 'bg-violet-400', text: 'text-violet-600', accent: 'bg-violet-400', ring: 'ring-violet-400', rgb: '167, 139, 250' },
-            { id: 'teal', name: 'Teal', primary: 'from-teal-400 to-teal-600', glow: 'bg-teal-400', text: 'text-teal-600', accent: 'bg-teal-400', ring: 'ring-teal-400', rgb: '45, 212, 191' },
+            { id: 'gold', name: 'Gold', primary: 'bg-amber-500', glow: 'bg-amber-400', text: 'text-amber-600', accent: 'bg-amber-400', ring: 'ring-amber-400', rgb: '251, 191, 36' },
+            { id: 'blue', name: 'Blue', primary: 'bg-blue-600', glow: 'bg-blue-400', text: 'text-blue-600', accent: 'bg-blue-400', ring: 'ring-blue-400', rgb: '96, 165, 250' },
+            { id: 'emerald', name: 'Emerald', primary: 'bg-emerald-500', glow: 'bg-emerald-400', text: 'text-emerald-600', accent: 'bg-emerald-400', ring: 'ring-emerald-400', rgb: '52, 211, 153' },
+            { id: 'purple', name: 'Purple', primary: 'bg-purple-600', glow: 'bg-fuchsia-400', text: 'text-purple-600', accent: 'bg-fuchsia-400', ring: 'ring-fuchsia-400', rgb: '232, 121, 249' },
+            { id: 'red', name: 'Red', primary: 'bg-red-600', glow: 'bg-red-500', text: 'text-red-600', accent: 'bg-red-500', ring: 'ring-red-500', rgb: '239, 68, 68' },
+            { id: 'orange', name: 'Orange', primary: 'bg-orange-500', glow: 'bg-orange-400', text: 'text-orange-600', accent: 'bg-orange-400', ring: 'ring-orange-400', rgb: '251, 146, 60' },
+            { id: 'cyan', name: 'Cyan', primary: 'bg-cyan-500', glow: 'bg-cyan-400', text: 'text-cyan-600', accent: 'bg-cyan-400', ring: 'ring-cyan-400', rgb: '34, 211, 238' },
+            { id: 'pink', name: 'Pink', primary: 'bg-pink-500', glow: 'bg-pink-400', text: 'text-pink-600', accent: 'bg-pink-400', ring: 'ring-pink-400', rgb: '244, 114, 182' },
+            { id: 'indigo', name: 'Indigo', primary: 'bg-indigo-600', glow: 'bg-indigo-400', text: 'text-indigo-600', accent: 'bg-indigo-400', ring: 'ring-indigo-400', rgb: '129, 140, 248' },
+            { id: 'slate', name: 'Slate', primary: 'bg-slate-600', glow: 'bg-slate-400', text: 'text-slate-600', accent: 'bg-slate-400', ring: 'ring-slate-400', rgb: '148, 163, 184' },
+            { id: 'lime', name: 'Lime', primary: 'bg-lime-500', glow: 'bg-lime-400', text: 'text-lime-600', accent: 'bg-lime-400', ring: 'ring-lime-400', rgb: '163, 230, 53' },
+            { id: 'rose', name: 'Rose', primary: 'bg-rose-500', glow: 'bg-rose-400', text: 'text-rose-600', accent: 'bg-rose-400', ring: 'ring-rose-400', rgb: '251, 113, 133' },
+            { id: 'sky', name: 'Sky', primary: 'bg-sky-500', glow: 'bg-sky-400', text: 'text-sky-600', accent: 'bg-sky-400', ring: 'ring-sky-400', rgb: '56, 189, 248' },
+            { id: 'violet', name: 'Violet', primary: 'bg-violet-600', glow: 'bg-violet-400', text: 'text-violet-600', accent: 'bg-violet-400', ring: 'ring-violet-400', rgb: '167, 139, 250' },
+            { id: 'teal', name: 'Teal', primary: 'bg-teal-500', glow: 'bg-teal-400', text: 'text-teal-600', accent: 'bg-teal-400', ring: 'ring-teal-400', rgb: '45, 212, 191' },
         ];
+
+        // --- RATING VIEW COMPONENT ---
+        const RatingView = ({ activeText, styles, themeColor, onSubmit }) => {
+            return (
+                <div className="flex flex-col items-center justify-center w-full h-full animate-fade-in">
+                    <h3 className={`text-sm font-semibold mb-4 ${styles.text}`}>{activeText.ratingTitle}</h3>
+                    
+                    <div className="flex gap-6">
+                        <button
+                            onClick={() => onSubmit('like')}
+                            className={`flex flex-col items-center gap-1 group transition-transform active:scale-90`}
+                        >
+                            <div className={`p-3 rounded-full ${styles.inputBg} group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors ${styles.subtext}`}>
+                                <IconWrapper name="ThumbsUp" size={24} />
+                            </div>
+                        </button>
+
+                        <button
+                            onClick={() => onSubmit('dislike')}
+                            className={`flex flex-col items-center gap-1 group transition-transform active:scale-90`}
+                        >
+                            <div className={`p-3 rounded-full ${styles.inputBg} group-hover:bg-red-100 group-hover:text-red-600 transition-colors ${styles.subtext}`}>
+                                <IconWrapper name="ThumbsDown" size={24} />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
 
         const AdminPanel = ({ config, setConfig, isOpen, setIsOpen }) => {
             const fileInputRef = useRef(null);
@@ -360,7 +390,7 @@
                                     <button
                                         key={theme.id}
                                         onClick={() => setConfig({ ...config, themeId: theme.id })}
-                                        className={`w-8 h-8 rounded-full bg-gradient-to-br ${theme.primary} shadow-sm transition-transform hover:scale-110 ${config.themeId === theme.id ? 'ring-2 ring-offset-2 ring-slate-900 scale-110' : ''}`}
+                                        className={`w-8 h-8 rounded-full ${theme.primary} shadow-sm transition-transform hover:scale-110 ${config.themeId === theme.id ? 'ring-2 ring-offset-2 ring-slate-900 scale-110' : ''}`}
                                     />
                                 ))}
                             </div>
@@ -507,11 +537,10 @@
             const isLauncherHidden = activePos === 'center' || (activePos !== 'center' && isOpen);
 
             // КЛАССЫ ПЕРЕОПРЕДЕЛЕНИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (активный чат сбоку)
-            // Жестко фиксируем позицию и отступы, игнорируя настройки смещения
-            // Добавлено !m-0 для обнуления внешних отступов и строгие !left-[15px] !right-[15px] для симметрии
-            // Высота уменьшена на 15px через calc(50vh - 15px) для side-режима
+            // ИСПРАВЛЕНИЕ: Жестко задана ширина calc(100vw - 30px) и левый отступ 15px.
+            // Right-auto гарантирует, что ширина будет считаться от левого края, создавая симметричный отступ справа.
             const mobileActiveSideOverrides = (callState === 'active' && activePos !== 'center')
-                ? "max-md:!left-[15px] max-md:!right-[15px] max-md:!bottom-[15px] max-md:!w-auto max-md:!transform-none max-md:!m-0"
+                ? "max-md:!left-[15px] max-md:!w-[calc(100vw-30px)] max-md:!bottom-[15px] max-md:!right-auto max-md:!transform-none max-md:!m-0"
                 : "";
 
             return (
@@ -572,7 +601,7 @@
                                                 <div className={`
                                                     max-w-[80%] px-4 py-2 rounded-2xl text-base leading-relaxed shadow-sm
                                                     ${msg.sender === 'user' 
-                                                        ? `bg-gradient-to-r ${activeTheme.primary} text-white rounded-tr-none shadow-md`
+                                                        ? `${activeTheme.primary} text-white rounded-tr-none shadow-md`
                                                         : styles.agentBubble + ' border rounded-tl-none ' + styles.border}
                                                 `}>
                                                     {msg.text}
@@ -595,7 +624,7 @@
                                             <div className={`absolute right-1 top-1/2 -translate-y-1/2 transition-all duration-200 ${inputValue.trim().length > 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
                                                 <button 
                                                     onClick={handleSendText}
-                                                    className={`w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-r ${activeTheme.primary} text-white shadow-md hover:scale-105 active:scale-95 transition-all`}
+                                                    className={`w-8 h-8 flex items-center justify-center rounded-full ${activeTheme.primary} text-white shadow-md hover:scale-105 active:scale-95 transition-all`}
                                                 >
                                                     <IconWrapper name="ArrowRight" size={18} />
                                                 </button>
@@ -671,7 +700,7 @@
                                                     className={`
                                                         w-full h-full rounded-full text-white font-semibold text-sm shadow-sm
                                                         flex items-center justify-center gap-2
-                                                        bg-gradient-to-r ${activeTheme.primary}
+                                                        ${activeTheme.primary}
                                                         hover:brightness-110 transition-all active:scale-95 whitespace-nowrap
                                                     `}
                                                 >
@@ -725,7 +754,7 @@
                         </div>
 
                         {/* КНОПКА-ЛАУНЧЕР */}
-                        <div className={`flex flex-col gap-4 items-center transition-transform duration-300 origin-bottom ${isOpen && activePos !== 'center' ? 'scale-75 md:scale-100' : ''}`}>
+                        <div className={`flex flex-col gap-4 items-center transition-transform duration-300 origin-bottom ${isOpen && activePos !== 'center' ? 'scale-75 md:scale-100 max-md:hidden' : ''}`}>
                             {/* ВНЕШНЯЯ КНОПКА ТЕЛЕГРАМ (только если не в центре И если чат не открыт) */}
                             {activePos !== 'center' && !isOpen && (
                                 <a 
@@ -758,7 +787,7 @@
                                         ${isOpen && activePos !== 'center' ? 'hidden' : ''} 
                                         ${isOpen 
                                             ? `${isLauncherHidden ? 'hidden' : ''} ${styles.bg} ${styles.text} rotate-90 border ${styles.border} scale-75 md:scale-100` 
-                                            : `bg-gradient-to-br ${activeTheme.primary} text-white rotate-0`
+                                            : `${activeTheme.primary} text-white rotate-0`
                                         }
                                     `}
                                 >
